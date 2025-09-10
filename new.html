@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTA5 - Elevate Your Trading</title>
+    <!-- Poppins & Montserrat Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* New Color Palette and Variables */
+        :root {
+            --primary-color: #0a1f33;      /* Deep Blue */
+            --secondary-color: #123e6b;    /* Lighter Blue */
+            --accent-color: #00f0b4;      /* Vibrant Cyan-Green */
+            --background-light: #e8f3ff;   /* Very Light Blue */
+            --background-dark: #010e1a;    /* Almost Black */
+            --text-color: #2c2c2c;
+            --text-light: #f0f0f0;
+            --gradient-start: #0a1f33;
+            --gradient-end: #123e6b;
+            --card-bg: #ffffff;
+            --card-hover-shadow: rgba(0, 240, 180, 0.4);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: var(--background-dark);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background with layered gradients */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(18, 62, 107, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 90% 80%, rgba(0, 240, 180, 0.1) 0%, transparent 60%);
+            animation: move-background 30s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes move-background {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(5%, 5%); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .text-center { text-align: center; }
+        .text-primary { color: var(--primary-color); }
+        .text-light { color: var(--text-light); }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 240, 180, 0.5); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(0, 240, 180, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 240, 180, 0); }
+        }
+        
+        @keyframes bounce-up {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .animated {
+            animation-duration: 0.8s;
+            animation-fill-mode: both;
+            opacity: 0;
+        }
+        
+        .animated.visible {
+            opacity: 1;
+        }
+
+        .fade-in { animation-name: fadeIn; }
+        .slide-in-left { animation-name: slideInLeft; }
+        .slide-in-right { animation-name: slideInRight; }
+        .pulse-animation { animation: pulse 2s infinite ease-in-out; }
+        .bounce-animation { animation: bounce-up 1s infinite; }
+
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .logo svg {
+            margin-right: 10px;
+            fill: var(--primary-color);
+            transition: fill 0.3s ease;
+        }
+        .logo:hover svg {
+            fill: var(--secondary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+            background: var(--background-dark);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(18, 62, 107, 0.6) 0%, rgba(1, 14, 26, 0.8) 100%);
+            z-index: 1;
+            opacity: 0.8;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5em;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            font-weight: 700;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            animation-delay: 0.2s;
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation-delay: 0.4s;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 240, 180, 0.4);
+            animation-delay: 0.6s;
+        }
+
+        .btn:hover {
+            background-color: #00d49e;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 240, 180, 0.6);
+        }
+
+        /* Section Styling */
+        .section {
+            background-color: var(--background-light);
+            padding: 100px 0;
+            text-align: center;
+            color: var(--text-color);
+            box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.08);
+            margin-top: -50px;
+            position: relative;
+            z-index: 5;
+            border-radius: 30px 30px 0 0;
+            overflow: hidden;
+        }
+        .section-dark {
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            padding: 100px 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        .section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background-color: var(--accent-color);
+            border-radius: 5px;
+        }
+
+        .section-dark h2 {
+            color: var(--text-light);
+        }
+        .section-dark h2::after {
+            background-color: var(--secondary-color);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(10, 31, 51, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px var(--card-hover-shadow);
+            border-color: var(--accent-color);
+        }
+        .feature-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            font-size: 1.6em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .feature-card p {
+            position: relative;
+            z-index: 1;
+            color: #555;
+        }
+
+        .section-dark .feature-card {
+            background-color: rgba(1, 14, 26, 0.8);
+            color: var(--text-light);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(18, 62, 107, 0.2);
+        }
+        .section-dark .feature-card h3 {
+            color: var(--accent-color);
+        }
+        .section-dark .feature-card p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Pre-registration Form */
+        .pre-register-form {
+            background-color: var(--card-bg);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            max-width: 550px;
+            margin: 60px auto 0;
+            text-align: left;
+            border: 1px solid rgba(10, 31, 51, 0.15);
+        }
+
+        .pre-register-form h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .form-group input {
+            width: calc(100% - 24px);
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            background-color: #fcfcff;
+        }
+
+        .form-group input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 4px rgba(18, 62, 107, 0.2);
+            outline: none;
+            background-color: #fff;
+        }
+        
+        .form-group button {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(10, 31, 51, 0.3);
+        }
+
+        .form-group button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(18, 62, 107, 0.4);
+        }
+        
+        /* New Professional Counter Style */
+        .registration-counter {
+            margin-top: 60px;
+            padding: 15px 30px; /* Reduced padding */
+            background-color: #f5f8fc; /* Light, clean background */
+            border-radius: 10px; /* Softer rounded corners */
+            color: var(--text-color);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); /* Lighter shadow */
+            max-width: 450px; /* Reduced max-width */
+            margin-left: auto;
+            margin-right: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .registration-counter:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+        .registration-counter h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2em;
+            margin: 0;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .registration-count {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em; /* Reduced font size */
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: block; /* Stacked below the heading */
+            margin-top: 5px;
+            color: var(--secondary-color);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 50px 0;
+            margin-top: -30px;
+            position: relative;
+            z-index: 5;
+            border-radius: 0 0 30px 30px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .logo {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .section h2 {
+                font-size: 2.2em;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .pre-register-form {
+                padding: 30px;
+            }
+
+            .registration-count {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 0 24 24" width="30px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg>
+                    VTA5
+                </a>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#preregister">Pre-Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="animated fade-in">Master Your Markets with <span style="color: var(--accent-color);">VTA5</span></h1>
+            <p class="animated fade-in" style="animation-delay: 0.4s;">Embark on a new era of trading. Secure your early access and unlock unparalleled advantages!</p>
+            <a href="#preregister" class="btn animated fade-in" style="animation-delay: 0.8s;">Join the Future Now</a>
+        </div>
+    </section>
+
+    <section id="overview" class="section">
+        <div class="container">
+            <h2 class="animated fade-in">Your Next-Gen Trading Platform</h2>
+            <p class="animated fade-in" style="animation-delay: 0.2s;">VTA5 is crafting a sophisticated, yet intuitive environment for every trader.</p>
+            <div class="grid-container">
+                <div class="feature-card animated slide-in-left" style="animation-delay: 0.4s;">
+                    <h3>Intelligent Insights</h3>
+                    <p>Harness AI-driven analytics and real-time data to sharpen your trading edge.</p>
+                </div>
+                <div class="feature-card animated fade-in" style="animation-delay: 0.6s;">
+                    <h3>Dynamic User Experience</h3>
+                    <p>Navigate markets with a fluid, responsive interface designed for peak performance.</p>
+                </div>
+                <div class="feature-card animated slide-in-right" style="animation-delay: 0.8s;">
+                    <h3>Fortified Security</h3>
+                    <p>Trade with absolute confidence, protected by industry-leading security protocols.</p>
+                </div>
+            </div>
+            <p class="animated fade-in" style="margin-top: 60px; font-size: 1.2em; max-width: 900px; margin-left: auto; margin-right: auto; animation-delay: 1s;">
+                Dive into a world where advanced technology meets user-centric design, providing you with all the tools to thrive.
+            </p>
+        </div>
+    </section>
+
+    <section id="benefits" class="section-dark">
+        <div class="container">
+            <h2 class="animated fade-in">Unlock Exclusive Launch Perks</h2>
+            <p class="animated fade-in text-light" style="animation-delay: 0.2s;">Pre-register and position yourself for a wealth of benefits the moment we go live:</p>
+            <div class="grid-container">
+                <div class="feature-card animated slide-in-left" style="animation-delay: 0.4s;">
+                    <h3>Priority Access</h3>
+                    <p>Be among the first to explore the VTA5 platform before public release.</p>
+                </div>
+                <div class="feature-card animated fade-in" style="animation-delay: 0.6s;">
+                    <h3>Bonus Trading Credits</h3>
+                    <p>Receive exclusive credits upon launch to kickstart your trading journey with VTA5.</p>
+                </div>
+                <div class="feature-card animated slide-in-right" style="animation-delay: 0.8s;">
+                    <h3>Dedicated Support</h3>
+                    <p>Access expedited customer support and personalized onboarding sessions.</p>
+                </div>
+            </div>
+            <p class="animated fade-in text-light" style="margin-top: 60px; font-size: 1.2em; opacity: 0.9; max-width: 900px; margin-left: auto; margin-right: auto; animation-delay: 1s;">
+                These advantages are reserved for our visionary early adopters. Join the inner circle!
+            </p>
+        </div>
+    </section>
+
+    <section id="preregister" class="section">
+        <div class="container">
+            <h2 class="animated fade-in">Secure Your Spot in VTA5</h2>
+            <p class="animated fade-in" style="animation-delay: 0.2s;">Don't wait! Register now and be part of the future of trading.</p>
+            <div class="pre-register-form animated fade-in" style="animation-delay: 0.4s;">
+                <h2>Pre-Register for VTA5</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number (Optional)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="e.g., +1 (555) 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Set a Strong Password</label>
+                        <input type="password" id="password" name="password" placeholder="Min 8 characters" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Pre-Register & Get Benefits</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="registration-counter text-center animated fade-in" style="animation-delay: 0.6s;">
+                <h3>Current Early Registrations:</h3>
+                <div class="registration-count" id="live-reg-count">0</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container animated fade-in" style="animation-delay: 0.2s;">
+            <p>&copy; 2023 VTA5. All rights reserved. | <a href="#" style="color: var(--accent-color); text-decoration: none;">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Live Registration Counter Logic
+        let currentRegistrations = 1234; // Starting fake number
+        const regCountElement = document.getElementById('live-reg-count');
+
+        function updateRegistrationCount() {
+            currentRegistrations += Math.floor(Math.random() * 5) + 1; // Increment by 1-5
+            regCountElement.textContent = currentRegistrations.toLocaleString();
+        }
+
+        // Update every 5 seconds
+        setInterval(updateRegistrationCount, 5000);
+
+        // Initial update
+        updateRegistrationCount();
+
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.style.opacity = 1;
+                } else {
+                    // Optional: remove visible class if you want animations to replay on scroll up/down
+                    // entry.target.classList.remove('visible');
+                    // entry.target.style.opacity = 0; // Reset opacity if you want it to fade in again
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animated').forEach(element => {
+            element.style.opacity = 0; // Hide elements initially
+            observer.observe(element);
+        });
+
+        // Add a smooth scroll for navigation links
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        document.querySelector('.hero .btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+    </script>
+</body>
+</html>
